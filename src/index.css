@@ -1,0 +1,8 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+[data-list-item="true"]::before {
+  content: "•";
+  padding: 0 5px;
+}
