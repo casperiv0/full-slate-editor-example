@@ -1,4 +1,4 @@
-import type { SlateElements, TextAlignment } from "../types";
+import { ElementType, SlateElements, TextAlignment } from "../types";
 import type { RenderElementProps } from "slate-react";
 import { CheckListItemElement } from "./CheckListItemElement";
 import { LinkElement } from "./LinkElement";
@@ -7,7 +7,7 @@ import classNames from "classnames";
 type ComponentItem = (props: RenderElementProps & { element: SlateElements }) => JSX.Element;
 
 const components: Record<string, ComponentItem> = {
-  "block-quote": ({ children, attributes, element }) => (
+  [ElementType.Blockquote]: ({ children, attributes, element }) => (
     <blockquote
       {...attributes}
       className={classNames(
@@ -18,8 +18,8 @@ const components: Record<string, ComponentItem> = {
       {children}
     </blockquote>
   ),
-  "bulleted-list": ({ children, attributes }) => <ul {...attributes}>{children}</ul>,
-  "heading-one": ({ children, attributes, element }) => (
+  [ElementType.BulletedList]: ({ children, attributes }) => <ul {...attributes}>{children}</ul>,
+  [ElementType.H1]: ({ children, attributes, element }) => (
     <h1
       {...attributes}
       className={classNames("text-3xl font-semibold", "align" in element ? element.align : null)}
@@ -27,7 +27,7 @@ const components: Record<string, ComponentItem> = {
       {children}
     </h1>
   ),
-  "heading-two": ({ children, attributes, element }) => (
+  [ElementType.H2]: ({ children, attributes, element }) => (
     <h2
       {...attributes}
       className={classNames("text-2xl font-semibold", "align" in element ? element.align : null)}
@@ -35,7 +35,7 @@ const components: Record<string, ComponentItem> = {
       {children}
     </h2>
   ),
-  "heading-three": ({ children, attributes, element }) => (
+  [ElementType.H3]: ({ children, attributes, element }) => (
     <h3
       {...attributes}
       className={classNames("text-xl font-semibold", "align" in element ? element.align : null)}
@@ -43,18 +43,19 @@ const components: Record<string, ComponentItem> = {
       {children}
     </h3>
   ),
-  "list-item": ({ children, attributes }) => (
+  [ElementType.ListItem]: ({ children, attributes }) => (
     <li {...attributes} data-list-item="true">
       {children}
     </li>
   ),
-  "check-list-item": ({ children, attributes, element }) => (
+  [ElementType.CheckListItem]: ({ children, attributes, element }) => (
     <CheckListItemElement {...({ children, attributes, element } as any)} />
   ),
-  link: ({ children, attributes, element }) => (
+  [ElementType.NumberedList]: ({ children, attributes }) => <ol {...attributes}>{children}</ol>,
+  [ElementType.Link]: ({ children, attributes, element }) => (
     <LinkElement {...{ attributes, children, element }} />
   ),
-  delimiter: ({ attributes, children }) => (
+  [ElementType.Delimiter]: ({ attributes, children }) => (
     <span {...attributes}>
       {children}
       <hr className="w-full select-none border-t-2 rounded-md dark:border-[#3f3f3f]" />

@@ -1,17 +1,19 @@
 import { Editor, Transforms, Range, Point, Element as SlateElement } from "slate";
 import type { SlateEditor } from "../../components/editor/Editor";
+import { ElementType } from "../../components/editor/types";
 
 type SHORTCUTS = typeof SHORTCUTS[keyof typeof SHORTCUTS];
 const SHORTCUTS = {
-  "*": "list-item",
-  "-": "list-item",
-  "+": "list-item",
-  ">": "block-quote",
-  "#": "heading-one",
-  "##": "heading-two",
-  "###": "heading-three",
-  "[]": "check-list-item",
-  "---": "delimiter",
+  "*": ElementType.ListItem,
+  "-": ElementType.ListItem,
+  "+": ElementType.ListItem,
+  "1.": ElementType.NumberedList,
+  "[]": ElementType.CheckListItem,
+  ">": ElementType.Blockquote,
+  "#": ElementType.H1,
+  "##": ElementType.H2,
+  "###": ElementType.H3,
+  "---": ElementType.Delimiter,
 } as const;
 
 export function withShortcuts(editor: SlateEditor) {
@@ -42,13 +44,13 @@ export function withShortcuts(editor: SlateEditor) {
           match: (n) => Editor.isBlock(editor, n),
         });
 
-        if (type === "list-item") {
+        if (type === ElementType.ListItem) {
           Transforms.wrapNodes(
             editor,
-            { type: "bulleted-list", children: [] },
+            { type: ElementType.BulletedList, children: [] },
             {
               match: (n) =>
-                !Editor.isEditor(n) && SlateElement.isElement(n) && n.type === "list-item",
+                !Editor.isEditor(n) && SlateElement.isElement(n) && n.type === ElementType.ListItem,
             },
           );
         }
@@ -75,15 +77,17 @@ export function withShortcuts(editor: SlateEditor) {
         if (
           !Editor.isEditor(block) &&
           SlateElement.isElement(block) &&
-          block.type !== "paragraph" &&
+          block.type !== ElementType.Paragraph &&
           Point.equals(selection.anchor, start)
         ) {
-          Transforms.setNodes(editor, { type: "paragraph" });
+          Transforms.setNodes(editor, { type: ElementType.Paragraph });
 
-          if (block.type === "list-item") {
+          if (block.type === ElementType.ListItem) {
             Transforms.unwrapNodes(editor, {
               match: (n) =>
-                !Editor.isEditor(n) && SlateElement.isElement(n) && n.type === "bulleted-list",
+                !Editor.isEditor(n) &&
+                SlateElement.isElement(n) &&
+                n.type === ElementType.BulletedList,
               split: true,
             });
           }

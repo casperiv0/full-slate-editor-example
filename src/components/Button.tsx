@@ -18,7 +18,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(({ ...pro
       {...props}
       disabled={props.disabled}
       className={classNames(
-        "p-1 px-3 rounded-md transition-colors cursor-default",
+        "p-1 px-3 rounded-md transition-colors cursor-pointer",
         "disabled:opacity-50 disabled:cursor-not-allowed",
         variant && variants[variant],
         props.className,

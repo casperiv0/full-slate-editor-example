@@ -1,5 +1,19 @@
 import type { Descendant } from "slate";
 
+export enum ElementType {
+  Paragraph = "paragraph",
+  H1 = "heading-one",
+  H2 = "heading-two",
+  H3 = "heading-three",
+  Blockquote = "blockquote",
+  ListItem = "list-item",
+  BulletedList = "bulleted-list",
+  NumberedList = "numbered-list",
+  CheckListItem = "check-list-item",
+  Link = "link",
+  Delimiter = "delimiter",
+}
+
 export interface Text {
   text: string;
   bold?: boolean;
@@ -10,59 +24,64 @@ export interface Text {
 }
 
 export interface ParagraphElement {
-  type: "paragraph";
+  type: ElementType.Paragraph;
   align?: TextAlignment;
   children: Descendant[];
 }
 
 export interface HeadingOneElement {
-  type: "heading-one";
+  type: ElementType.H1;
   align?: TextAlignment;
   children: Text[];
 }
 
 export interface HeadingTwoElement {
-  type: "heading-two";
+  type: ElementType.H2;
   align?: TextAlignment;
   children: Text[];
 }
 
 export interface HeadingThreeElement {
-  type: "heading-three";
+  type: ElementType.H3;
   align?: TextAlignment;
   children: Text[];
 }
 
 export interface BlockquoteElement {
-  type: "block-quote";
+  type: ElementType.Blockquote;
   align?: TextAlignment;
   children: Text[];
 }
 
 export interface ListItemElement {
-  type: "list-item";
+  type: ElementType.ListItem;
   children: Text[];
 }
 
 export interface BulletItemElement {
-  type: "bulleted-list";
+  type: ElementType.BulletedList;
   children: Text[];
 }
 
 export interface CheckListItemElement {
-  type: "check-list-item";
+  type: ElementType.CheckListItem;
   checked?: boolean;
   children: Text[];
 }
 
+export interface NumberedListItemElement {
+  type: ElementType.NumberedList;
+  children: Text[];
+}
+
 export interface LinkElement {
-  type: "link";
+  type: ElementType.Link;
   url: string;
   children: Text[];
 }
 
 export interface DelimiterElement {
-  type: "delimiter";
+  type: ElementType.Delimiter;
 }
 
 export type SlateElements =
@@ -73,6 +92,7 @@ export type SlateElements =
   | BlockquoteElement
   | ListItemElement
   | BulletItemElement
+  | NumberedListItemElement
   | CheckListItemElement
   | LinkElement
   | DelimiterElement;
@@ -84,5 +104,5 @@ export type TextBlocks =
   | HeadingThreeElement
   | BlockquoteElement;
 
-export type TextAlignment = "text-left" | "text-right" | "text-center" | "text-justify";
+export type TextAlignment = "text-left" | "text-right" | "text-center";
 export type SlateFormat = SlateElements["type"] | TextAlignment;

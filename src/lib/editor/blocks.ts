@@ -1,5 +1,5 @@
 import type { SlateEditor } from "../../components/editor/Editor";
-import type { SlateFormat, Text, TextAlignment } from "../../components/editor/types";
+import { ElementType, SlateFormat, Text, TextAlignment } from "../../components/editor/types";
 import { Editor, Transforms, Element as SlateElement } from "slate";
 
 const LIST_TYPES = ["numbered-list", "bulleted-list"];
@@ -33,7 +33,11 @@ export function toggleBlock(editor: SlateEditor, format: SlateFormat) {
     newProperties = { align: isActive ? undefined : (format as TextAlignment) };
   } else {
     newProperties = {
-      type: isActive ? "paragraph" : isList ? "list-item" : (format as SlateElement["type"]),
+      type: isActive
+        ? ElementType.Paragraph
+        : isList
+        ? ElementType.ListItem
+        : (format as SlateElement["type"]),
     };
   }
 

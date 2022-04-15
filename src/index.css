@@ -6,3 +6,13 @@
   content: "•";
   padding: 0 5px;
 }
+
+ol > [data-list-item="true"]::before {
+  content: "";
+  padding: 0;
+}
+
+ol {
+  list-style-type: decimal !important;
+  margin-left: 19px;
+}

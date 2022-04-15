@@ -59,7 +59,7 @@ export function Editor({ isReadonly, value, onChange }: EditorProps) {
   }
 
   return (
-    <div className="mt-1 px-3" style={{ height: "calc(100vh - 10rem)", overflowY: "auto" }}>
+    <div style={{ height: "calc(100vh - 10rem)", overflowY: "auto" }}>
       <Slate editor={editor} value={value} onChange={handleChange}>
         {isReadonly ? null : (
           <>

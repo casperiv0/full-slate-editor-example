@@ -1,6 +1,5 @@
 import * as RToolbar from "@radix-ui/react-toolbar";
 import {
-  Justify,
   ListCheck,
   ListUl,
   Quote,
@@ -17,12 +16,13 @@ import {
   Code,
   Link,
   Hr,
+  ListOl,
 } from "react-bootstrap-icons";
 import { useSlate } from "slate-react";
 import { Button } from "../Button";
 import classNames from "classnames";
 import { isBlockActive, toggleMark, toggleBlock, isMarkActive } from "../../lib/editor/blocks";
-import type { SlateFormat, Text } from "../editor/types";
+import { ElementType, SlateFormat, Text } from "../editor/types";
 import { isLinkActive, unwrapLink, wrapLink } from "../../lib/editor-plugins/withLinks";
 
 export function Toolbar() {
@@ -49,13 +49,23 @@ export function Toolbar() {
         className="flex gap-1"
         type="single"
       >
-        <BlockButton format="heading-one" icon={<TypeH1 aria-label="heading-one" />} />
-        <BlockButton format="heading-two" icon={<TypeH2 aria-label="heading-two" />} />
-        <BlockButton format="heading-three" icon={<TypeH3 aria-label="heading-three" />} />
-        <BlockButton format="block-quote" icon={<Quote aria-label="block-quote" />} />
-        <BlockButton format="bulleted-list" icon={<ListUl aria-label="bulleted-list" />} />
-        <BlockButton format="check-list-item" icon={<ListCheck aria-label="check-list-item" />} />
-        <BlockButton format="delimiter" icon={<Hr aria-label="delimiter" />} />
+        <BlockButton format={ElementType.H1} icon={<TypeH1 aria-label="heading-one" />} />
+        <BlockButton format={ElementType.H2} icon={<TypeH2 aria-label="heading-two" />} />
+        <BlockButton format={ElementType.H3} icon={<TypeH3 aria-label="heading-three" />} />
+        <BlockButton format={ElementType.Blockquote} icon={<Quote aria-label="block-quote" />} />
+        <BlockButton
+          format={ElementType.BulletedList}
+          icon={<ListUl aria-label="bulleted-list" />}
+        />
+        <BlockButton
+          format={ElementType.NumberedList}
+          icon={<ListOl aria-label="numbered-list" />}
+        />
+        <BlockButton
+          format={ElementType.CheckListItem}
+          icon={<ListCheck aria-label="check-list" />}
+        />
+        <BlockButton format={ElementType.Delimiter} icon={<Hr aria-label="delimiter" />} />
       </RToolbar.ToolbarToggleGroup>
 
       <RToolbar.Separator className="w-[1px] bg-neutral-400 dark:bg-gray-3 mx-1 text-justify" />
@@ -67,7 +77,6 @@ export function Toolbar() {
         <BlockButton format="text-left" icon={<JustifyLeft aria-label="text-left" />} />
         <BlockButton format="text-right" icon={<JustifyRight aria-label="text-right" />} />
         <BlockButton format="text-center" icon={<TextCenter aria-label="text-center" />} />
-        <BlockButton format="text-justify" icon={<Justify aria-label="text-justify" />} />
       </RToolbar.ToolbarToggleGroup>
     </RToolbar.Root>
   );
