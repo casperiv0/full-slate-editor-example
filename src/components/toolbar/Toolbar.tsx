@@ -21,7 +21,7 @@ import {
 import { useSlate } from "slate-react";
 import { Button } from "../Button";
 import classNames from "classnames";
-import { isBlockActive, toggleMark, toggleBlock, isMarkActive } from "../../lib/editor/utils";
+import { isBlockActive, toggleMark, toggleBlock, isMarkActive } from "../../lib/editor/blocks";
 import type { SlateFormat, Text } from "../editor/types";
 import { isLinkActive, unwrapLink, wrapLink } from "../../lib/editor-plugins/withLinks";
 

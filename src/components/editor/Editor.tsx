@@ -10,8 +10,7 @@ import {
 } from "slate-react";
 import { type HistoryEditor, withHistory } from "slate-history";
 import { Toolbar } from "../toolbar/Toolbar";
-import { toggleMark } from "../../lib/editor/utils";
-import isHotkey from "is-hotkey";
+
 import { withShortcuts } from "../../lib/editor-plugins/withShortcuts";
 import { withChecklists } from "../../lib/editor-plugins/withChecklists";
 import type { SlateElements, Text } from "./types";
@@ -19,6 +18,7 @@ import { HoverToolbar } from "../toolbar/HoverToolbar";
 import { withLinks } from "../../lib/editor-plugins/withLinks";
 import { EditorElement } from "./elements/index";
 import { Leaf } from "./Leaf";
+import { handleEditorHotkeys } from "../../lib/editor/utils";
 
 export type SlateEditor = BaseEditor & ReactEditor & HistoryEditor;
 
@@ -34,7 +34,6 @@ interface EditorProps {
   isReadonly?: boolean;
   value: any;
   onChange?(value: Descendant[]): void;
-  isShare?: boolean;
 }
 
 export const DEFAULT_EDITOR_DATA = [
@@ -44,14 +43,7 @@ export const DEFAULT_EDITOR_DATA = [
   },
 ] as Descendant[];
 
-const HOTKEYS = {
-  "mod+b": "bold",
-  "mod+i": "italic",
-  "mod+u": "underline",
-  "mod+s": "strikethrough",
-} as const;
-
-export function Editor({ isReadonly, value, isShare, onChange }: EditorProps) {
+export function Editor({ isReadonly, value, onChange }: EditorProps) {
   const renderElement = React.useCallback(
     (props: RenderElementProps) => <EditorElement {...props} />,
     [],
@@ -67,11 +59,7 @@ export function Editor({ isReadonly, value, isShare, onChange }: EditorProps) {
   }
 
   return (
-    <div
-      className="mt-1 px-3"
-      data-editor-preview={!isShare}
-      style={{ height: "calc(100vh - 10rem)", overflowY: "auto" }}
-    >
+    <div className="mt-1 px-3" style={{ height: "calc(100vh - 10rem)", overflowY: "auto" }}>
       <Slate editor={editor} value={value} onChange={handleChange}>
         {isReadonly ? null : (
           <>
@@ -88,15 +76,7 @@ export function Editor({ isReadonly, value, isShare, onChange }: EditorProps) {
           renderElement={renderElement}
           className="w-full p-1.5 rounded-md bg-transparent disabled:cursor-not-allowed disabled:opacity-80"
           placeholder="Start typing..."
-          onKeyDown={(event) => {
-            for (const hotkey in HOTKEYS) {
-              if (isHotkey(hotkey)(event)) {
-                event.preventDefault();
-                const mark = HOTKEYS[hotkey as keyof typeof HOTKEYS];
-                toggleMark(editor, mark);
-              }
-            }
-          }}
+          onKeyDown={(event) => handleEditorHotkeys(event, editor)}
         />
       </Slate>
     </div>
