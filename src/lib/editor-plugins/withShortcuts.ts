@@ -3,17 +3,24 @@ import type { SlateEditor } from "../../components/editor/Editor";
 import { ElementType } from "../../components/editor/types";
 
 type SHORTCUTS = typeof SHORTCUTS[keyof typeof SHORTCUTS];
+
+const LIST_ELEMENT_TYPES = [
+  ElementType.CheckListItem,
+  ElementType.BulletedList,
+  ElementType.NumberedList,
+];
+
 const SHORTCUTS = {
-  "*": ElementType.ListItem,
-  "-": ElementType.ListItem,
-  "+": ElementType.ListItem,
-  "1.": ElementType.NumberedList,
+  "*": [ElementType.ListItem, ElementType.BulletedList],
+  "-": [ElementType.ListItem, ElementType.BulletedList],
+  "+": [ElementType.ListItem, ElementType.BulletedList],
+  "1.": [ElementType.ListItem, ElementType.NumberedList],
   "[]": ElementType.CheckListItem,
   ">": ElementType.Blockquote,
   "#": ElementType.H1,
   "##": ElementType.H2,
   "###": ElementType.H3,
-  "---": ElementType.Delimiter,
+  "---": ElementType.HorizontalLine,
 } as const;
 
 export function withShortcuts(editor: SlateEditor) {
@@ -31,11 +38,14 @@ export function withShortcuts(editor: SlateEditor) {
       const start = Editor.start(editor, path);
       const range = { anchor, focus: start };
       const beforeText = Editor.string(editor, range) as keyof typeof SHORTCUTS;
-      const type = SHORTCUTS[beforeText] as SHORTCUTS | undefined;
+
+      const _type = SHORTCUTS[beforeText] as SHORTCUTS | undefined;
+      const type = (Array.isArray(_type) ? _type[0] : _type) as ElementType | undefined;
 
       if (type) {
         Transforms.select(editor, range);
         Transforms.delete(editor);
+
         const newProperties = {
           type,
         };
@@ -45,9 +55,11 @@ export function withShortcuts(editor: SlateEditor) {
         });
 
         if (type === ElementType.ListItem) {
+          const listType = Array.isArray(_type) ? _type[1] : ElementType.BulletedList;
+
           Transforms.wrapNodes(
             editor,
-            { type: ElementType.BulletedList, children: [] },
+            { type: listType, children: [] },
             {
               match: (n) =>
                 !Editor.isEditor(n) && SlateElement.isElement(n) && n.type === ElementType.ListItem,
@@ -87,7 +99,7 @@ export function withShortcuts(editor: SlateEditor) {
               match: (n) =>
                 !Editor.isEditor(n) &&
                 SlateElement.isElement(n) &&
-                n.type === ElementType.BulletedList,
+                LIST_ELEMENT_TYPES.includes(n.type),
               split: true,
             });
           }

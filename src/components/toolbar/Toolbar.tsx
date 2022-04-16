@@ -42,6 +42,8 @@ export function Toolbar() {
         />
         <MarkButton format="inline-code" icon={<Code aria-label="inline-code" />} />
         <LinkButton icon={<Link aria-label="link" />} />
+        <LinkButton icon={<Link aria-label="subscript" />} />
+        <LinkButton icon={<Link aria-label="superscript" />} />
       </RToolbar.ToolbarToggleGroup>
       <RToolbar.Separator className="w-[1px] bg-neutral-400 dark:bg-gray-3 mx-1 text-justify" />
       <RToolbar.ToolbarToggleGroup
@@ -65,7 +67,7 @@ export function Toolbar() {
           format={ElementType.CheckListItem}
           icon={<ListCheck aria-label="check-list" />}
         />
-        <BlockButton format={ElementType.Delimiter} icon={<Hr aria-label="delimiter" />} />
+        <BlockButton format={ElementType.HorizontalLine} icon={<Hr aria-label="delimiter" />} />
       </RToolbar.ToolbarToggleGroup>
 
       <RToolbar.Separator className="w-[1px] bg-neutral-400 dark:bg-gray-3 mx-1 text-justify" />
@@ -74,9 +76,21 @@ export function Toolbar() {
         className="flex gap-1"
         type="single"
       >
-        <BlockButton format="text-left" icon={<JustifyLeft aria-label="text-left" />} />
-        <BlockButton format="text-right" icon={<JustifyRight aria-label="text-right" />} />
-        <BlockButton format="text-center" icon={<TextCenter aria-label="text-center" />} />
+        <BlockButton
+          blockType="align"
+          format="text-left"
+          icon={<JustifyLeft aria-label="text-left" />}
+        />
+        <BlockButton
+          blockType="align"
+          format="text-center"
+          icon={<TextCenter aria-label="text-center" />}
+        />
+        <BlockButton
+          blockType="align"
+          format="text-right"
+          icon={<JustifyRight aria-label="text-right" />}
+        />
       </RToolbar.ToolbarToggleGroup>
     </RToolbar.Root>
   );
@@ -85,11 +99,12 @@ export function Toolbar() {
 interface BlockButtonProps {
   format: SlateFormat;
   icon: React.ReactNode;
+  blockType?: "align" | "type";
 }
 
-export function BlockButton({ format, icon }: BlockButtonProps) {
+export function BlockButton({ format, icon, blockType = "type" }: BlockButtonProps) {
   const editor = useSlate();
-  const isActive = isBlockActive(editor, format);
+  const isActive = isBlockActive(editor, format, blockType);
 
   return (
     <RToolbar.ToolbarToggleItem asChild value={format}>

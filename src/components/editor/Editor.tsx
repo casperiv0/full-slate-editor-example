@@ -12,13 +12,13 @@ import { type HistoryEditor, withHistory } from "slate-history";
 import { Toolbar } from "../toolbar/Toolbar";
 
 import { withShortcuts } from "../../lib/editor-plugins/withShortcuts";
-import { withChecklists } from "../../lib/editor-plugins/withChecklists";
 import type { SlateElements, Text } from "./types";
 import { HoverToolbar } from "../toolbar/HoverToolbar";
 import { withLinks } from "../../lib/editor-plugins/withLinks";
 import { EditorElement } from "./elements/index";
 import { Leaf } from "./Leaf";
 import { handleEditorHotkeys } from "../../lib/editor/utils";
+import { withVoids } from "../../lib/editor-plugins/withVoids";
 
 export type SlateEditor = BaseEditor & ReactEditor & HistoryEditor;
 
@@ -50,7 +50,7 @@ export function Editor({ isReadonly, value, onChange }: EditorProps) {
   );
   const renderLeaf = React.useCallback((props: RenderLeafProps) => <Leaf {...props} />, []);
   const editor = React.useMemo(
-    () => withLinks(withChecklists(withShortcuts(withHistory(withReact(createEditor()))))),
+    () => withVoids(withLinks(withShortcuts(withHistory(withReact(createEditor()))))),
     [],
   );
 

@@ -3,7 +3,9 @@ import { Transforms } from "slate";
 import { ReactEditor, useReadOnly, useSlateStatic, type RenderElementProps } from "slate-react";
 import type { CheckListItemElement as ICheckListItemElement } from "../types";
 
-type Props = RenderElementProps & { element: ICheckListItemElement };
+interface Props extends RenderElementProps {
+  element: ICheckListItemElement;
+}
 
 export function CheckListItemElement({ attributes, children, element }: Props) {
   const editor = useSlateStatic();
@@ -28,7 +30,6 @@ export function CheckListItemElement({ attributes, children, element }: Props) {
         contentEditable={!readOnly}
         suppressContentEditableWarning
         className={classNames(
-          "flex-1 outline-none",
           element.checked ? "line-through" : "none",
           element.checked ? "opacity-60" : "opacity-100",
         )}

@@ -38,8 +38,16 @@ export function HoverToolbar() {
 
     const rect = domRange.getBoundingClientRect();
     el.style.opacity = "1";
-    el.style.top = `${rect.top + window.pageYOffset - el.offsetHeight - 10}px`;
-    el.style.left = `${rect.left + window.pageXOffset - el.offsetWidth / 2 + rect.width / 2}px`;
+
+    const top = rect.top + window.pageYOffset - el.offsetHeight - 10;
+    let left = rect.left + window.pageXOffset - el.offsetWidth / 2 + rect.width / 2;
+
+    if (left < 0) {
+      left = 5;
+    }
+
+    el.style.top = `${top}px`;
+    el.style.left = `${left}px`;
   });
 
   return (

@@ -2,7 +2,7 @@ import type { SlateEditor } from "../../components/editor/Editor";
 import { ElementType, SlateFormat, Text, TextAlignment } from "../../components/editor/types";
 import { Editor, Transforms, Element as SlateElement } from "slate";
 
-const LIST_TYPES = ["numbered-list", "bulleted-list"];
+const LIST_TYPES = [ElementType.NumberedList, ElementType.BulletedList] as string[];
 const TEXT_ALIGN_TYPES = ["text-left", "text-center", "text-right", "text-justify"];
 
 export function isMarkActive(editor: SlateEditor, format: keyof Omit<Text, "text">) {
@@ -12,11 +12,9 @@ export function isMarkActive(editor: SlateEditor, format: keyof Omit<Text, "text
 }
 
 export function toggleBlock(editor: SlateEditor, format: SlateFormat) {
-  const isActive = isBlockActive(
-    editor,
-    format,
-    TEXT_ALIGN_TYPES.includes(format) ? "align" : "type",
-  );
+  const blockType = TEXT_ALIGN_TYPES.includes(format) ? "align" : "type";
+
+  const isActive = isBlockActive(editor, format, blockType);
   const isList = LIST_TYPES.includes(format);
 
   Transforms.unwrapNodes(editor, {
@@ -45,7 +43,7 @@ export function toggleBlock(editor: SlateEditor, format: SlateFormat) {
 
   if (!isActive && isList) {
     const block = { type: format, children: [] } as SlateElement;
-    Transforms.wrapNodes(editor, block);
+    Transforms.wrapNodes(editor, block, { voids: true });
   }
 }
 

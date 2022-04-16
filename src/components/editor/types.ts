@@ -11,7 +11,7 @@ export enum ElementType {
   NumberedList = "numbered-list",
   CheckListItem = "check-list-item",
   Link = "link",
-  Delimiter = "delimiter",
+  HorizontalLine = "horizontal-line",
 }
 
 export interface Text {
@@ -81,7 +81,7 @@ export interface LinkElement {
 }
 
 export interface DelimiterElement {
-  type: ElementType.Delimiter;
+  type: ElementType.HorizontalLine;
 }
 
 export type SlateElements =
@@ -96,13 +96,6 @@ export type SlateElements =
   | CheckListItemElement
   | LinkElement
   | DelimiterElement;
-
-export type TextBlocks =
-  | ParagraphElement
-  | HeadingOneElement
-  | HeadingTwoElement
-  | HeadingThreeElement
-  | BlockquoteElement;
 
 export type TextAlignment = "text-left" | "text-right" | "text-center";
 export type SlateFormat = SlateElements["type"] | TextAlignment;
