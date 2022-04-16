@@ -1,8 +1,9 @@
 import * as React from "react";
 import { Button } from "./components/Button";
-import { Editor, DEFAULT_EDITOR_DATA } from "./components/editor/Editor";
+import { Editor } from "./components/editor/Editor";
+import { SAMPLE_DATA } from "./lib/data";
 
-function App() {
+export function App() {
   const [readOnly, setReadOnly] = React.useState(false);
 
   return (
@@ -12,9 +13,7 @@ function App() {
         <p className="mt-2">Is Readonly: {String(readOnly)}</p>
       </div>
 
-      <Editor isReadonly={readOnly} value={DEFAULT_EDITOR_DATA} />
+      <Editor isReadonly={readOnly} value={SAMPLE_DATA} />
     </div>
   );
 }
-
-export default App;

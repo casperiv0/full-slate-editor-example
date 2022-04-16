@@ -42,8 +42,6 @@ export function Toolbar() {
         />
         <MarkButton format="inline-code" icon={<Code aria-label="inline-code" />} />
         <LinkButton icon={<Link aria-label="link" />} />
-        <LinkButton icon={<Link aria-label="subscript" />} />
-        <LinkButton icon={<Link aria-label="superscript" />} />
       </RToolbar.ToolbarToggleGroup>
       <RToolbar.Separator className="w-[1px] bg-neutral-400 dark:bg-gray-3 mx-1 text-justify" />
       <RToolbar.ToolbarToggleGroup
