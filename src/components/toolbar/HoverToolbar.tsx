@@ -3,6 +3,7 @@ import * as RToolbar from "@radix-ui/react-toolbar";
 import * as Portal from "@radix-ui/react-portal";
 import { Range, Editor } from "slate";
 import { useFocused, useSlate } from "slate-react";
+import useOnClickOutside from "react-cool-onclickoutside";
 import { LinkButton, MarkButton } from "./Toolbar";
 import {
   TypeItalic,
@@ -17,6 +18,17 @@ export function HoverToolbar() {
   const ref = React.useRef<HTMLDivElement>(null);
   const editor = useSlate();
   const inFocus = useFocused();
+  const portalRef = useOnClickOutside(() => closePortal());
+
+  function closePortal() {
+    const el = ref.current;
+
+    if (!el) {
+      return;
+    }
+
+    el.removeAttribute("style");
+  }
 
   React.useEffect(() => {
     const el = ref.current;
@@ -51,7 +63,7 @@ export function HoverToolbar() {
   });
 
   return (
-    <Portal.Root>
+    <Portal.Root ref={portalRef}>
       <RToolbar.Root
         onMouseDown={(e) => {
           // prevent toolbar from taking focus away from editor

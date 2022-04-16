@@ -7,7 +7,7 @@ export function App() {
   const [readOnly, setReadOnly] = React.useState(false);
 
   return (
-    <div className="p-10">
+    <div className="w-full container max-w-5xl mx-auto p-2 sm:p-10">
       <div className="mb-10">
         <Button onClick={() => setReadOnly((v) => !v)}>Toggle isReadonly</Button>
         <p className="mt-2">Is Readonly: {String(readOnly)}</p>
