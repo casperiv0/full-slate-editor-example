@@ -1,6 +1,6 @@
 import classNames from "classnames";
 import { RenderElementProps } from "slate-react";
-import { TextAlignment } from "../types";
+import { TextAlignment } from "~/components/editor/types";
 
 interface Props extends RenderElementProps {
   children: React.ReactNode;

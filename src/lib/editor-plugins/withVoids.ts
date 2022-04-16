@@ -1,5 +1,5 @@
-import type { SlateEditor } from "../../components/editor/Editor";
-import { ElementType } from "../../components/editor/types";
+import type { SlateEditor } from "~/components/editor/Editor";
+import { ElementType } from "~/components/editor/types";
 
 export function withVoids(editor: SlateEditor) {
   const { isVoid } = editor;

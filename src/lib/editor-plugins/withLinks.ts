@@ -1,7 +1,7 @@
-import type { SlateEditor } from "../../components/editor/Editor";
+import type { SlateEditor } from "~/components/editor/Editor";
 import isUrl from "is-url";
 import { Editor, Transforms, Element as SlateElement, Range } from "slate";
-import { ElementType, LinkElement } from "../../components/editor/types";
+import { ElementType, LinkElement } from "~/components/editor/types";
 
 export function withLinks(editor: SlateEditor) {
   const { insertData, insertText, isInline } = editor;

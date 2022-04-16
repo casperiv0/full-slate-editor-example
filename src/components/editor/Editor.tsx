@@ -9,16 +9,16 @@ import {
   withReact,
 } from "slate-react";
 import { type HistoryEditor, withHistory } from "slate-history";
-import { Toolbar } from "../toolbar/Toolbar";
+import { Toolbar } from "~/components/toolbar/Toolbar";
 
-import { withShortcuts } from "../../lib/editor-plugins/withShortcuts";
+import { withShortcuts } from "~/lib/editor-plugins/withShortcuts";
 import type { SlateElements, Text } from "./types";
-import { HoverToolbar } from "../toolbar/HoverToolbar";
-import { withLinks } from "../../lib/editor-plugins/withLinks";
+import { HoverToolbar } from "~/components/toolbar/HoverToolbar";
+import { withLinks } from "~/lib/editor-plugins/withLinks";
 import { EditorElement } from "./elements/index";
 import { Leaf } from "./Leaf";
-import { handleEditorHotkeys } from "../../lib/editor/utils";
-import { withVoids } from "../../lib/editor-plugins/withVoids";
+import { handleEditorHotkeys } from "~/lib/editor/utils";
+import { withVoids } from "~/lib/editor-plugins/withVoids";
 
 export type SlateEditor = BaseEditor & ReactEditor & HistoryEditor;
 

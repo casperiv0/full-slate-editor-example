@@ -2,7 +2,7 @@ import * as React from "react";
 import classNames from "classnames";
 import { RenderElementProps, useFocused, useSelected, useSlateStatic } from "slate-react";
 import { Transforms } from "slate";
-import { ElementType, ParagraphElement } from "../types";
+import { ElementType, ParagraphElement } from "~/components/editor/types";
 
 export function HorizontalLineElement({ children, attributes }: RenderElementProps) {
   const editor = useSlateStatic();

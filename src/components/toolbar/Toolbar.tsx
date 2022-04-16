@@ -21,9 +21,9 @@ import {
 import { useSlate } from "slate-react";
 import { Button } from "../Button";
 import classNames from "classnames";
-import { isBlockActive, toggleMark, toggleBlock, isMarkActive } from "../../lib/editor/blocks";
-import { ElementType, SlateFormat, Text } from "../editor/types";
-import { isLinkActive, unwrapLink, wrapLink } from "../../lib/editor-plugins/withLinks";
+import { isBlockActive, toggleMark, toggleBlock, isMarkActive } from "~/lib/editor/blocks";
+import { ElementType, SlateFormat, Text } from "~/components/editor/types";
+import { isLinkActive, unwrapLink, wrapLink } from "~/lib/editor-plugins/withLinks";
 
 export function Toolbar() {
   return (

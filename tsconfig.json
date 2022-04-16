@@ -42,7 +42,11 @@
     /* Advanced Options */
     "skipLibCheck": true /* Skip type checking of declaration files. */,
     "forceConsistentCasingInFileNames": true /* Disallow inconsistently-cased references to the same file. */,
-    "jsx": "react-jsx"
+    "jsx": "react-jsx",
+
+    "paths": {
+      "~/*": ["./src/*"]
+    }
   },
   "include": ["src/**/*.ts", "vite.config.ts", "src/**/*.tsx", "tailwind.config.js"],
   "exclude": ["node_modules"]

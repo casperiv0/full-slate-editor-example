@@ -1,6 +1,6 @@
 import { Editor, Transforms, Range, Point, Element as SlateElement } from "slate";
-import type { SlateEditor } from "../../components/editor/Editor";
-import { ElementType } from "../../components/editor/types";
+import type { SlateEditor } from "~/components/editor/Editor";
+import { ElementType } from "~/components/editor/types";
 
 type SHORTCUTS = typeof SHORTCUTS[keyof typeof SHORTCUTS];
 
