@@ -43,7 +43,7 @@ export function toggleBlock(editor: SlateEditor, format: SlateFormat) {
 
   if (!isActive && isList) {
     const block = { type: format, children: [] } as SlateElement;
-    Transforms.wrapNodes(editor, block, { voids: true });
+    Transforms.wrapNodes(editor, block);
   }
 }
 

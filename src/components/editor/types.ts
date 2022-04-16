@@ -80,7 +80,7 @@ export interface LinkElement {
   children: Text[];
 }
 
-export interface DelimiterElement {
+export interface HorizontalLineElement {
   type: ElementType.HorizontalLine;
 }
 
@@ -95,7 +95,7 @@ export type SlateElements =
   | NumberedListItemElement
   | CheckListItemElement
   | LinkElement
-  | DelimiterElement;
+  | HorizontalLineElement;
 
 export type TextAlignment = "text-left" | "text-right" | "text-center";
 export type SlateFormat = SlateElements["type"] | TextAlignment;
