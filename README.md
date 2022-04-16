@@ -1,14 +1,7 @@
-# ts-project-template
+# Slate editor example
 
-A simple TypeScript project template with ESLint, prettier and GitHub actions
+A full Slate editor example with many features such as text formatting, block formatting (quotes, headers, lists) and text alignment
 
-## npm scripts
-
-- `format`: formats the code using Prettier
-- `lint`: checks for lint errors using ESLint
-- `test:tsc`: checks for TypeScript errors
-
-## workflows
-
-- `lint`: runs the `lint` script
-- `tsc-test`: runs the `test:tsc` script
+> ## Development
+>
+> _This is still in development, many things can change._
