@@ -3,18 +3,6 @@ export const SAMPLE_DATA = [
     type: "paragraph",
     children: [
       {
-        text: "",
-      },
-      {
-        type: "link",
-        url: "https://slatejs.org",
-        children: [
-          {
-            text: "",
-          },
-        ],
-      },
-      {
         text: "Using ",
         bold: true,
       },
@@ -49,12 +37,8 @@ export const SAMPLE_DATA = [
     ],
   },
   {
-    type: "heading-two",
-    children: [
-      {
-        text: "",
-      },
-    ],
+    type: "paragraph",
+    children: [{ text: "" }],
   },
   {
     type: "heading-two",
@@ -75,11 +59,6 @@ export const SAMPLE_DATA = [
           },
         ],
       },
-    ],
-  },
-  {
-    type: "bulleted-list",
-    children: [
       {
         type: "list-item",
         children: [
@@ -111,30 +90,6 @@ export const SAMPLE_DATA = [
             text: "Keyboard combos",
           },
         ],
-      },
-    ],
-  },
-  {
-    type: "paragraph",
-    children: [
-      {
-        text: "",
-      },
-    ],
-  },
-  {
-    type: "paragraph",
-    children: [
-      {
-        text: "",
-      },
-    ],
-  },
-  {
-    type: "paragraph",
-    children: [
-      {
-        text: "",
       },
     ],
   },

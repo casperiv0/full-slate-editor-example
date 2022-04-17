@@ -1,25 +1,39 @@
 import * as React from "react";
 import classNames from "classnames";
-import { RenderElementProps, useFocused, useSelected, useSlateStatic } from "slate-react";
-import { Transforms } from "slate";
+import {
+  ReactEditor,
+  RenderElementProps,
+  useFocused,
+  useSelected,
+  useSlateStatic,
+} from "slate-react";
+import { Editor, Transforms } from "slate";
 import { ElementType, ParagraphElement } from "~/components/editor/types";
 
-export function HorizontalLineElement({ children, attributes }: RenderElementProps) {
+export function HorizontalLineElement({ children, element, attributes }: RenderElementProps) {
   const editor = useSlateStatic();
   const selected = useSelected();
   const focused = useFocused();
+  const path = ReactEditor.findPath(editor, element);
 
   const isFocused = selected && focused;
 
   React.useEffect(() => {
     const handler = (event: KeyboardEvent) => {
       if (event.key === "ArrowDown") {
-        const paragraph: ParagraphElement = {
-          type: ElementType.Paragraph,
-          children: [{ text: "" }],
-        };
+        const block = Editor.after(editor, path, {
+          distance: 1,
+        });
 
-        Transforms.insertNodes(editor, [paragraph]);
+        // don't re-create the paragraph block if it already exists
+        if (!block) {
+          const paragraph: ParagraphElement = {
+            type: ElementType.Paragraph,
+            children: [{ text: "" }],
+          };
+
+          Transforms.insertNodes(editor, [paragraph]);
+        }
       }
     };
 

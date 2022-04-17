@@ -55,6 +55,7 @@ export function HoverToolbar() {
     let left = rect.left + window.pageXOffset - el.offsetWidth / 2 + rect.width / 2;
 
     if (left < 0) {
+      // if the calculated left is off the page, set the toolbar 5px to the left
       left = 5;
     }
 
