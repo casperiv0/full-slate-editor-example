@@ -17,7 +17,6 @@ import {
   Link,
   Hr,
   ListOl,
-  ArrowsCollapse,
 } from "react-bootstrap-icons";
 import { useSlate } from "slate-react";
 import { Button } from "../Button";
@@ -67,10 +66,6 @@ export function Toolbar() {
           icon={<ListCheck aria-label="check-list" />}
         />
         <BlockButton format={ElementType.HorizontalLine} icon={<Hr aria-label="delimiter" />} />
-        <BlockButton
-          format={ElementType.Collapsible}
-          icon={<ArrowsCollapse aria-label="collapsible" />}
-        />
       </RToolbar.ToolbarToggleGroup>
 
       <RToolbar.Separator className="w-[1px] bg-neutral-400 dark:bg-gray-3 mx-1 text-justify" />

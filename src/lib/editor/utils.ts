@@ -1,7 +1,7 @@
 import { toggleMark } from "./blocks";
 import isHotkey from "is-hotkey";
 import React from "react";
-import { SlateEditor } from "~/components/editor/Editor";
+import { SlateEditor } from "~/components/editor/types";
 
 const HOTKEYS = {
   "mod+b": "bold",

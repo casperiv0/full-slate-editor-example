@@ -1,5 +1,4 @@
-import type { SlateEditor } from "~/components/editor/Editor";
-import { ElementType } from "~/components/editor/types";
+import { SlateEditor, ElementType } from "~/components/editor/types";
 
 const VOID_ELEMENTS = [ElementType.HorizontalLine];
 

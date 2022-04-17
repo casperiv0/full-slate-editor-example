@@ -1,5 +1,10 @@
-import type { SlateEditor } from "~/components/editor/Editor";
-import { ElementType, SlateFormat, Text, TextAlignment } from "~/components/editor/types";
+import {
+  SlateEditor,
+  ElementType,
+  SlateFormat,
+  Text,
+  TextAlignment,
+} from "~/components/editor/types";
 import { Editor, Transforms, Element as SlateElement } from "slate";
 
 const LIST_TYPES = [ElementType.NumberedList, ElementType.BulletedList] as string[];

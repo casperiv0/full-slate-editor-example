@@ -1,34 +1,16 @@
 import * as React from "react";
-import { BaseEditor, Descendant, createEditor } from "slate";
-import {
-  Editable,
-  ReactEditor,
-  RenderElementProps,
-  RenderLeafProps,
-  Slate,
-  withReact,
-} from "slate-react";
-import { type HistoryEditor, withHistory } from "slate-history";
+import { Descendant, createEditor } from "slate";
+import { Editable, RenderElementProps, RenderLeafProps, Slate, withReact } from "slate-react";
+import { withHistory } from "slate-history";
 import { Toolbar } from "~/components/toolbar/Toolbar";
 
 import { withShortcuts } from "~/lib/editor-plugins/withShortcuts";
-import type { SlateElements, Text } from "./types";
 import { HoverToolbar } from "~/components/toolbar/HoverToolbar";
 import { withLinks } from "~/lib/editor-plugins/withLinks";
 import { EditorElement } from "./elements/index";
 import { Leaf } from "./Leaf";
 import { handleEditorHotkeys } from "~/lib/editor/utils";
 import { withVoids } from "~/lib/editor-plugins/withVoids";
-
-export type SlateEditor = BaseEditor & ReactEditor & HistoryEditor;
-
-declare module "slate" {
-  interface CustomTypes {
-    Editor: SlateEditor;
-    Element: SlateElements;
-    Text: Text;
-  }
-}
 
 interface EditorProps {
   isReadonly?: boolean;

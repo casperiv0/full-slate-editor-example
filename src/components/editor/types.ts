@@ -1,4 +1,16 @@
-import type { Descendant } from "slate";
+import type { Descendant, BaseEditor } from "slate";
+import type { ReactEditor } from "slate-react";
+import type { HistoryEditor } from "slate-history";
+
+export type SlateEditor = BaseEditor & ReactEditor & HistoryEditor;
+
+declare module "slate" {
+  interface CustomTypes {
+    Editor: SlateEditor;
+    Element: SlateElements;
+    Text: Text;
+  }
+}
 
 export enum ElementType {
   Paragraph = "paragraph",
@@ -12,7 +24,6 @@ export enum ElementType {
   CheckListItem = "check-list-item",
   Link = "link",
   HorizontalLine = "horizontal-line",
-  Collapsible = "collapsible",
 }
 
 export interface Text {
