@@ -81,13 +81,6 @@ export interface LinkElement {
   children: Text[];
 }
 
-export interface CollapsibleElement {
-  type: ElementType.Collapsible;
-  collapsed?: boolean;
-  title?: string;
-  children: Descendant[];
-}
-
 export interface HorizontalLineElement {
   type: ElementType.HorizontalLine;
 }
@@ -103,8 +96,7 @@ export type SlateElements =
   | NumberedListItemElement
   | CheckListItemElement
   | LinkElement
-  | HorizontalLineElement
-  | CollapsibleElement;
+  | HorizontalLineElement;
 
 export type TextAlignment = "text-left" | "text-right" | "text-center";
 export type SlateFormat = SlateElements["type"] | TextAlignment;
