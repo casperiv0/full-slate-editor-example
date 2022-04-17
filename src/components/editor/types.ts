@@ -24,9 +24,32 @@ export enum ElementType {
   CheckListItem = "check-list-item",
   Link = "link",
   HorizontalLine = "horizontal-line",
+
+  SyntaxHighlightBlock = "syntax-highlight-block",
+  SyntaxHighlight = "syntax-highlight",
 }
 
 export interface Text {
+  // syntax highlight
+  selector?: boolean;
+  symbol?: boolean;
+  constant?: boolean;
+  tag?: boolean;
+  boolean?: boolean;
+  number?: boolean;
+  regex?: boolean;
+  url?: boolean;
+  comment?: boolean;
+  operator?: boolean;
+  keyword?: boolean;
+  variable?: boolean;
+  "attr-name"?: boolean;
+  char?: boolean;
+  function?: boolean;
+  string?: boolean;
+  punctuation?: boolean;
+  "class-name"?: boolean;
+
   text: string;
   bold?: boolean;
   underline?: boolean;
@@ -72,18 +95,18 @@ export interface ListItemElement {
 
 export interface BulletItemElement {
   type: ElementType.BulletedList;
-  children: Text[];
+  children: ListItemElement[];
 }
 
 export interface CheckListItemElement {
   type: ElementType.CheckListItem;
   checked?: boolean;
-  children: Text[];
+  children: ListItemElement[];
 }
 
 export interface NumberedListItemElement {
   type: ElementType.NumberedList;
-  children: Text[];
+  children: ListItemElement[];
 }
 
 export interface LinkElement {
@@ -92,8 +115,20 @@ export interface LinkElement {
   children: Text[];
 }
 
+export interface SyntaxHighlightBlockElement {
+  type: ElementType.SyntaxHighlightBlock;
+  language?: string;
+  children: SyntaxHighlightElement[];
+}
+
+export interface SyntaxHighlightElement {
+  type: ElementType.SyntaxHighlight;
+  children: Text[];
+}
+
 export interface HorizontalLineElement {
   type: ElementType.HorizontalLine;
+  children: [{ text: "" }];
 }
 
 export type SlateElements =
@@ -107,7 +142,9 @@ export type SlateElements =
   | NumberedListItemElement
   | CheckListItemElement
   | LinkElement
-  | HorizontalLineElement;
+  | HorizontalLineElement
+  | SyntaxHighlightBlockElement
+  | SyntaxHighlightElement;
 
 export type TextAlignment = "text-left" | "text-right" | "text-center";
 export type SlateFormat = SlateElements["type"] | TextAlignment;

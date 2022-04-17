@@ -11,6 +11,7 @@ import { EditorElement } from "./elements/index";
 import { Leaf } from "./Leaf";
 import { handleEditorHotkeys } from "~/lib/editor/utils";
 import { withVoids } from "~/lib/editor-plugins/withVoids";
+import { decorate } from "~/lib/editor/syntax-highlight";
 
 interface EditorProps {
   isReadonly?: boolean;
@@ -23,6 +24,7 @@ export function Editor({ isReadonly, value, onChange }: EditorProps) {
     (props: RenderElementProps) => <EditorElement {...props} />,
     [],
   );
+
   const renderLeaf = React.useCallback((props: RenderLeafProps) => <Leaf {...props} />, []);
   const editor = React.useMemo(
     () => withVoids(withLinks(withShortcuts(withHistory(withReact(createEditor()))))),
@@ -44,6 +46,7 @@ export function Editor({ isReadonly, value, onChange }: EditorProps) {
         )}
 
         <Editable
+          decorate={(entry) => decorate(entry, editor)}
           spellCheck="false"
           autoComplete="off"
           readOnly={isReadonly}

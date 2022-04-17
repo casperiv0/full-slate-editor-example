@@ -1,13 +1,16 @@
-export const SAMPLE_DATA = [
+import { Descendant } from "slate";
+import { ElementType } from "~/components/editor/types";
+
+export const SAMPLE_DATA: Descendant[] = [
   {
-    type: "paragraph",
+    type: ElementType.Paragraph,
     children: [
       {
         text: "Using ",
         bold: true,
       },
       {
-        type: "link",
+        type: ElementType.Link,
         url: "https://slatejs.org",
         children: [
           {
@@ -23,7 +26,7 @@ export const SAMPLE_DATA = [
     ],
   },
   {
-    type: "paragraph",
+    type: ElementType.Paragraph,
     children: [
       {
         text: "Links are clickable in ",
@@ -37,11 +40,11 @@ export const SAMPLE_DATA = [
     ],
   },
   {
-    type: "paragraph",
+    type: ElementType.Paragraph,
     children: [{ text: "" }],
   },
   {
-    type: "heading-two",
+    type: ElementType.H2,
     children: [
       {
         text: "Features",
@@ -49,10 +52,10 @@ export const SAMPLE_DATA = [
     ],
   },
   {
-    type: "bulleted-list",
+    type: ElementType.BulletedList,
     children: [
       {
-        type: "list-item",
+        type: ElementType.ListItem,
         children: [
           {
             text: "Block formatting",
@@ -60,7 +63,7 @@ export const SAMPLE_DATA = [
         ],
       },
       {
-        type: "list-item",
+        type: ElementType.ListItem,
         children: [
           {
             text: "Text formatting",
@@ -68,7 +71,7 @@ export const SAMPLE_DATA = [
         ],
       },
       {
-        type: "list-item",
+        type: ElementType.ListItem,
         children: [
           {
             text: "Text alignment",
@@ -76,7 +79,7 @@ export const SAMPLE_DATA = [
         ],
       },
       {
-        type: "list-item",
+        type: ElementType.ListItem,
         children: [
           {
             text: "Shortcuts (###, >, -, [], etc.)",
@@ -84,12 +87,30 @@ export const SAMPLE_DATA = [
         ],
       },
       {
-        type: "list-item",
+        type: ElementType.ListItem,
         children: [
           {
             text: "Keyboard combos",
           },
         ],
+      },
+    ],
+  },
+  {
+    type: ElementType.HorizontalLine,
+    children: [{ text: "" }],
+  },
+  {
+    type: ElementType.SyntaxHighlightBlock,
+    language: "html",
+    children: [
+      {
+        type: ElementType.SyntaxHighlight,
+        children: [{ text: "<p>Event has code syntax highlighting!</p>" }],
+      },
+      {
+        type: ElementType.SyntaxHighlight,
+        children: [{ text: "<p>Multi line support for syntax highlight</p>" }],
       },
     ],
   },

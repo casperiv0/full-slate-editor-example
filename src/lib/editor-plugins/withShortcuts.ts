@@ -98,7 +98,7 @@ export function withShortcuts(editor: SlateEditor) {
               match: (n) =>
                 !Editor.isEditor(n) &&
                 SlateElement.isElement(n) &&
-                LIST_ELEMENT_TYPES.includes(n.type),
+                [...LIST_ELEMENT_TYPES, ElementType.SyntaxHighlightBlock].includes(n.type),
               split: true,
             });
           }

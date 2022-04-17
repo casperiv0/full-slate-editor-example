@@ -53,7 +53,7 @@ export function HorizontalLineElement({ children, element, attributes }: RenderE
       <div contentEditable={false}>
         <hr
           className={classNames(
-            "w-full select-none border-t-2 rounded-md dark:border-[#3f3f3f]",
+            "w-full select-none border-t-2 rounded-md dark:border-[#3f3f3f] my-3",
             isFocused && "ring-2 ring-offset-2 ring-blue-500",
           )}
         />

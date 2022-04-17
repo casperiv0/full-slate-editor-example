@@ -4,6 +4,7 @@ import { CheckListItemElement } from "./CheckListItemElement";
 import { LinkElement } from "./LinkElement";
 import classNames from "classnames";
 import { HorizontalLineElement } from "./HorizontalLineElement";
+import { SyntaxHighlightElement } from "./SyntaxHighlight";
 
 type ComponentItem = (
   props: RenderElementProps & { textAlign: TextAlignment | null; element: SlateElements },
@@ -48,6 +49,9 @@ const components: Record<string, ComponentItem> = {
   ),
   [ElementType.HorizontalLine]: ({ attributes, children, element }) => (
     <HorizontalLineElement {...{ attributes, children, element }} />
+  ),
+  [ElementType.SyntaxHighlightBlock]: ({ attributes, children, element }) => (
+    <SyntaxHighlightElement {...{ attributes, children, element }} />
   ),
 };
 
