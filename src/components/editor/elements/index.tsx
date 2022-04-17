@@ -1,4 +1,4 @@
-import { ElementType, SlateElements, TextAlignment } from "../types";
+import { ElementType, SlateElements, TextAlignment } from "~/components/editor/types";
 import type { RenderElementProps } from "slate-react";
 import { CheckListItemElement } from "./CheckListItemElement";
 import { LinkElement } from "./LinkElement";

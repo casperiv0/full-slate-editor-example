@@ -12,6 +12,7 @@ export enum ElementType {
   CheckListItem = "check-list-item",
   Link = "link",
   HorizontalLine = "horizontal-line",
+  Collapsible = "collapsible",
 }
 
 export interface Text {
@@ -76,8 +77,15 @@ export interface NumberedListItemElement {
 
 export interface LinkElement {
   type: ElementType.Link;
-  url: string;
+  url?: string;
   children: Text[];
+}
+
+export interface CollapsibleElement {
+  type: ElementType.Collapsible;
+  collapsed?: boolean;
+  title?: string;
+  children: Descendant[];
 }
 
 export interface HorizontalLineElement {
@@ -95,7 +103,8 @@ export type SlateElements =
   | NumberedListItemElement
   | CheckListItemElement
   | LinkElement
-  | HorizontalLineElement;
+  | HorizontalLineElement
+  | CollapsibleElement;
 
 export type TextAlignment = "text-left" | "text-right" | "text-center";
 export type SlateFormat = SlateElements["type"] | TextAlignment;

@@ -32,16 +32,9 @@ declare module "slate" {
 
 interface EditorProps {
   isReadonly?: boolean;
-  value: any;
+  value: any[];
   onChange?(value: Descendant[]): void;
 }
-
-export const DEFAULT_EDITOR_DATA = [
-  {
-    type: "paragraph",
-    children: [{ text: "" }],
-  },
-] as Descendant[];
 
 export function Editor({ isReadonly, value, onChange }: EditorProps) {
   const renderElement = React.useCallback(

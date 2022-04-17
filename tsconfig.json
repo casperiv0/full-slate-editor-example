@@ -44,8 +44,9 @@
     "forceConsistentCasingInFileNames": true /* Disallow inconsistently-cased references to the same file. */,
     "jsx": "react-jsx",
 
+    "baseUrl": "./src",
     "paths": {
-      "~/*": ["./src/*"]
+      "~/*": ["./*"]
     }
   },
   "include": ["src/**/*.ts", "vite.config.ts", "src/**/*.tsx", "tailwind.config.js"],
