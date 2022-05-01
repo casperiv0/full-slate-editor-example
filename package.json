@@ -37,7 +37,7 @@
     "react": "^18.0.0",
     "react-bootstrap-icons": "^1.8.1",
     "react-cool-onclickoutside": "^1.7.0",
-    "react-dom": "^18.0.0",
+    "react-dom": "^18.1.0",
     "slate": "^0.77.2",
     "slate-history": "^0.66.0",
     "slate-react": "^0.77.3"
