@@ -20,7 +20,7 @@
     "@types/react": "^18.0.18",
     "@types/react-dom": "^18.0.6",
     "@vitejs/plugin-react": "^2.1.0",
-    "autoprefixer": "^10.4.8",
+    "autoprefixer": "^10.4.12",
     "eslint": "^8.23.0",
     "postcss": "^8.4.17",
     "prettier": "^2.7.1",
