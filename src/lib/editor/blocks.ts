@@ -13,6 +13,8 @@ const TEXT_ALIGN_TYPES = ["text-left", "text-center", "text-right", "text-justif
 export function isMarkActive(editor: SlateEditor, format: keyof Omit<Text, "text">) {
   const marks = Editor.marks(editor);
 
+  console.log({ marks });
+
   return marks ? marks[format] === true : false;
 }
 

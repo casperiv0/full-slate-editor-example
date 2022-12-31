@@ -49,7 +49,7 @@ export function Editor({ isReadonly, value, onChange }: EditorProps) {
           readOnly={isReadonly}
           renderLeaf={renderLeaf}
           renderElement={renderElement}
-          className="w-full p-1.5 rounded-md bg-transparent disabled:cursor-not-allowed disabled:opacity-80"
+          className="w-full p-1.5 rounded-md bg-transparent disabled:cursor-not-allowed disabled:opacity-80 outline-none"
           placeholder="Start typing..."
           onKeyDown={(event) => handleEditorHotkeys(event, editor)}
         />

@@ -17,6 +17,7 @@ import {
   Link,
   Hr,
   ListOl,
+  VectorPen,
 } from "react-bootstrap-icons";
 import { useSlate } from "slate-react";
 import { Button } from "../Button";
@@ -41,6 +42,7 @@ export function Toolbar() {
           icon={<TypeStrikethrough aria-label="strikethrough" />}
         />
         <MarkButton format="inline-code" icon={<Code aria-label="inline-code" />} />
+        <MarkButton format="highlight" icon={<VectorPen aria-label="highlight" />} />
         <LinkButton icon={<Link aria-label="link" />} />
       </RToolbar.ToolbarToggleGroup>
       <RToolbar.Separator className="w-[1px] bg-neutral-400 dark:bg-gray-3 mx-1 text-justify" />

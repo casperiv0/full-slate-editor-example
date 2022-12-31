@@ -23,5 +23,9 @@ export function Leaf({ attributes, children, leaf }: RenderLeafProps) {
     );
   }
 
+  if (leaf.highlight) {
+    children = <mark>{children}</mark>;
+  }
+
   return <span {...attributes}>{children}</span>;
 }

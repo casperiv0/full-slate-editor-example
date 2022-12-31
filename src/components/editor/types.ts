@@ -33,6 +33,7 @@ export interface Text {
   strikethrough?: boolean;
   italic?: boolean;
   "inline-code"?: boolean;
+  highlight?: boolean;
 }
 
 export interface ParagraphElement {
