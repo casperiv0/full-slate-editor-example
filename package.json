@@ -40,6 +40,6 @@
     "react-dom": "^18.2.0",
     "slate": "^0.87.0",
     "slate-history": "^0.86.0",
-    "slate-react": "^0.88.0"
+    "slate-react": "^0.89.0"
   }
 }
