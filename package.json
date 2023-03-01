@@ -38,7 +38,7 @@
     "react-bootstrap-icons": "^1.10.2",
     "react-cool-onclickoutside": "^1.7.0",
     "react-dom": "^18.2.0",
-    "slate": "^0.87.0",
+    "slate": "^0.91.4",
     "slate-history": "^0.86.0",
     "slate-react": "^0.88.0"
   }
