@@ -1,9 +1,9 @@
-name: Test TypeScript build
+name: Typecheck
 
 on: [push, pull_request]
 
 jobs:
-  test-tsc:
+  typecheck:
     runs-on: ubuntu-latest
 
     strategy:
@@ -25,5 +25,5 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
-      - name: Run test-tsc
-        run: npm run test-tsc
+      - name: Run typecheck
+        run: npm run typecheck
