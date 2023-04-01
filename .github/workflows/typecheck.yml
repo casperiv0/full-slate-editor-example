@@ -1,9 +1,9 @@
-name: Check ESLint
+name: Test TypeScript build
 
 on: [push, pull_request]
 
 jobs:
-  ESLint:
+  test-tsc:
     runs-on: ubuntu-latest
 
     strategy:
@@ -25,5 +25,5 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
-      - name: Run lint
-        run: npm run lint
+      - name: Run test-tsc
+        run: npm run test-tsc
