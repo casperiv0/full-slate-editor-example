@@ -9,6 +9,7 @@
   "scripts": {
     "format": "prettier --write \"**/*.{js,jsx,json,ts,tsx,yml,md}\"",
     "lint": "eslint . --ext .ts,.tsx",
+    "prettier:check": "prettier --check \"**/*.{js,jsx,ts,tsx,md,css,json}\" --ignore-path .gitignore",
     "typecheck": "tsc --noEmit",
     "dev": "vite",
     "build": "tsc && vite build",
