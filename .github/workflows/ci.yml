@@ -1,14 +1,10 @@
-name: Typecheck
+name: CI (Typecheck & Lint)
 
 on: [push, pull_request]
 
 jobs:
-  typecheck:
+  build:
     runs-on: ubuntu-latest
-
-    strategy:
-      matrix:
-        node-version: [18.x]
 
     steps:
       - uses: actions/checkout@v3
@@ -25,5 +21,11 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
-      - name: Run typecheck
-        run: npm run typecheck
+      - name: Linting check
+        run: pnpm run lint
+
+      - name: Prettier check
+        run: pnpm run prettier:check
+
+      - name: Typecheck app
+        run: pnpm run typecheck

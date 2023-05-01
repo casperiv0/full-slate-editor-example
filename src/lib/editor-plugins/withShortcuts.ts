@@ -1,7 +1,7 @@
 import { Editor, Transforms, Range, Point, Element as SlateElement } from "slate";
 import { SlateEditor, ElementType } from "~/components/editor/types";
 
-type SHORTCUTS = typeof SHORTCUTS[keyof typeof SHORTCUTS];
+type SHORTCUTS = (typeof SHORTCUTS)[keyof typeof SHORTCUTS];
 
 const LIST_ELEMENT_TYPES = [
   ElementType.CheckListItem,
@@ -31,7 +31,7 @@ export function withShortcuts(editor: SlateEditor) {
     if (text === " " && selection && Range.isCollapsed(selection)) {
       const { anchor } = selection;
       const block = Editor.above(editor, {
-        match: (n) => Editor.isBlock(editor, n),
+        match: (n) => SlateElement.isElement(n) && Editor.isBlock(editor, n),
       });
       const path = block ? block[1] : [];
       const start = Editor.start(editor, path);
@@ -50,7 +50,7 @@ export function withShortcuts(editor: SlateEditor) {
         };
 
         Transforms.setNodes<SlateElement>(editor, newProperties, {
-          match: (n) => Editor.isBlock(editor, n),
+          match: (n) => SlateElement.isElement(n) && Editor.isBlock(editor, n),
         });
 
         if (type === ElementType.ListItem) {
@@ -78,7 +78,7 @@ export function withShortcuts(editor: SlateEditor) {
 
     if (selection && Range.isCollapsed(selection)) {
       const match = Editor.above(editor, {
-        match: (n) => Editor.isBlock(editor, n),
+        match: (n) => SlateElement.isElement(n) && Editor.isBlock(editor, n),
       });
 
       if (match) {
